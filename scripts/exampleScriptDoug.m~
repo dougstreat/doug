@@ -16,14 +16,13 @@ global allPos;
 % master inputs
 % --------------------------------
 
-monkey = 'Joda';
-drugTypes = {'OTN'}
+monkey = 'Lager';
+drugTypes = {'OT','N'}
 %drugTypes = {'N'};
-%dosages = {'small','medium','large','saline'};
-dosages = {'small'};
+dosages = {'small','medium','large','saline'};
 
 %toExamine = 'n images'; 
-region = 'roi'; %roi or wholeFace
+region = 'roi';
 % if toExamine is 'normalized proportion', make sure first allTrialTypes is 'scrambled'
 
 roiPos.minX = 620;
@@ -42,7 +41,7 @@ allPos = {roiPos,wholePos};
 % allBlockEnds = 1000e5;
 
 allBlockStarts = [0 150e4 300e4 450e4 600e4 750e4 900e4 1050e4];
-allBlockEnds = allBlockStarts(:) + 60e4; %bins of time
+allBlockEnds = allBlockStarts(:) + 60e4;
 
 allTrialTypes = {'scrambled','people','monkeys','outdoors','animals'};
 %allTrialTypes = {'monkeys','nonConspecific','nonSocial'};
@@ -75,7 +74,7 @@ end
 end
 fprintf('\nDone!\n');
 %% generate table
-toExamine = 'n images'; %'proportion', 'normalized proportion' 'raw counts', 'average duration', or 'n images'
+toExamine = 'average duration'; %'proportion', 'normalized proportion' 'raw counts', 'average duration', or 'n images'
 for i = 1:length(allTrialTypes);
     for j = 1:length(drugTypes);
         for k = 1:length(dosages);
@@ -89,7 +88,7 @@ end
 % --------------------------------
 % plot
 % --------------------------------
-storePerImage = newPlot(M,'lineType','per stim','xAxis','time','subplotPerDrug',1,'treatNaNs',{'valReplace',0},'doseNames',doseNames,'limits',[]);
+storePerImage = newPlot(M,'lineType','per stim','xAxis','dose','subplotPerDrug',1,'treatNaNs',{'valReplace',0},'doseNames',doseNames,'limits',[]);
 %'lineType' -- what different lines correspond to
 %   'per stim' -- each line is a different image
 %   'per drug' -- each line is a different drug
